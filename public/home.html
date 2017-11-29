@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Book Review</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function() {
+  $.ajax({
+          url: "/get_all_posts",
+          type: "GET",
+          success: function(json) {
+            console.log(json);
+            var data = json.data.reverse();
+              if(data.length>0){
+            for (var i = 0; i < data.length; i += 1) {
+              $('#blog').append(`
+                <div class='row'
+          width:700px;
+          height:500px;
+          margin-left:300px;
+          opacity: .9;">
+                  <h3>` + data[i].title + `</h3>
+                  <h6>Nga ` + data[i].user + `</h6>
+                  <img src='` + data[i].url + `' style='height: 250px'> 
+                  <p>` + data[i].data + `</p>
+                </div>
+              `);
+              }
+            }
+            else $('#blog').html("nuk ka")
+          }
+      });
+  $('.btn-danger').on('click',function(){
+       $.ajax({
+          url: "/logout",
+          type: "GET",
+      success:function(json){
+      window.location.href= "http://localhost:7000/";
+      }
+        });
+        });
+});
+      
+  </script>
+  <style>
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #922B21   ;
+      padding: 25px;
+    }
+
+    .carousel-inner img {
+      width: 100%; /* Set width to 100% */
+      min-height: 200px;
+    }
+   .navbar {
+      margin-bottom: 0;
+      border-radius: 1;
+     background-color: #922B21    ;
+    }
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none; 
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <img src="https://s17.postimg.org/ldt0dag8f/Capture.png" style="width:90px;height: 50px">
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="about.html">Create a review</a></li>
+        <li><a href="projects.html">Show Reviews</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+       
+         <li><a href="index.html"><span class="glyphicon glyphicon-log-in"></span> logout</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<br><br><br>
+<div class="container">
+<div class="row">
+  <div class="col-sm-8">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="https://images.pottermore.com/bxd3o8b291gf/2jrSxh9R6IUOwgMKEk00Su/05289da72c3cde29287bb3d22e27d609/wizarding-world-book-club-logo-small.png" alt="Image">
+          <div class="carousel-caption">
+            <h3>Tell your opinion for the book </h3>
+            
+          </div>      
+        </div>
+
+        <div class="item">
+          <img src="https://i.ytimg.com/vi/bxqS8KQAqJQ/maxresdefault.jpg" alt="Image">
+          <div class="carousel-caption">
+           
+          </div>      
+        </div>
+      </div>
+
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  
+    
+  </div>
+</div>
+<hr>
+</div>
+
+<div class="container text-center">    
+  <h3>Best Seller</h3>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+      <img src="https://img.buzzfeed.com/buzzfeed-static/static/2016-11/22/20/asset/buzzfeed-prod-fastlane02/sub-buzz-15651-1479865662-4.jpg?downsize=715:*&output-format=auto&output-quality=auto" class="img-responsive" style="width:100%" alt="Image">
+      <p>The invisible Bridge</p>
+    </div>
+    <div class="col-sm-3"> 
+      <img src="https://spark.adobe.com/images/landing/examples/how-to-book-cover.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Dutch</p>    
+    </div>
+    <div class="col-sm-3" >
+      <div class="well" >
+       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </div>
+      
+    </div>
+    <div class="well">
+       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </div>
+      <div class="well">
+       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry..</p>
+      </div>
+    </div> 
+    <div class="col-sm-3">
+      <div class="well">
+       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </div>
+       <div class="well">
+       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      </div>
+  </div>
+  <hr>
+</div>
+
+<div class="container text-center">    
+  <h3>Another Books</h3>
+  <br>
+  <div class="row">
+    <div class="col-sm-2">
+      <img src="https://static1.squarespace.com/static/51fb0ec9e4b0cc5aa4503c84/t/5362fc46e4b047ee57003ff4/1398996040054/" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 1</p>
+    </div>
+    <div class="col-sm-2"> 
+      <img src="https://images-na.ssl-images-amazon.com/images/I/51UZ2nMUunL.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 2</p>    
+    </div>
+    <div class="col-sm-2"> 
+      <img src="http://abcoverd.co.uk/img/2017/young-adult/The_Girl_Of_Ink_and_Stars___Helen_Crawford_White.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 3</p>
+    </div>
+    <div class="col-sm-2"> 
+      <img src="https://i.pinimg.com/736x/4d/0d/fe/4d0dfed66979c0c801fb448889bd49a9--tiger-design-creative-posters.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 4</p>
+    </div> 
+    <div class="col-sm-2"> 
+      <img src="https://speckyboy.com/wp-content/uploads/2012/05/TBCE05.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 5</p>
+    </div>     
+    <div class="col-sm-2"> 
+      <img src="https://i.pinimg.com/736x/f7/7f/14/f77f14270c5cd225d43c59cc151e37fd--creative-book-covers-beautiful-book-covers.jpg" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 6</p>
+    </div> 
+  </div>
+</div><br>
+
+<footer class="container-fluid text-center">
+  <p>Design by Gjorgjia Metellari</p>
+</footer>
+
+</body>
+</html>
